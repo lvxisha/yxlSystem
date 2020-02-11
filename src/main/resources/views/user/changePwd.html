@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>修改密码页</title>
+	<Link rel="stylesheet" href="../../static/css/forgetPwd.css">
+	<link rel="stylesheet" href="../../public/bass.css">
+	<link rel="stylesheet" href="../../public/layui/css/layui.css"/>
+	<link rel="stylesheet" href="../../public/layui-add.css">
+	<link rel="stylesheet" href="../../public/font-awesome/css/font-awesome.css">
+</head>
+<body>
+<!-- 修改密码页 -->
+	<div class="reigt-main">
+		<p class="user-set-tit"><span class="span2">密码修改</span></p>
+		<ul class='main-con'>
+			<li>
+				<label >密码：</label>
+				<input class='password' type="password" placeholder="密码">
+			</li>
+			<li>
+				<label >新密码：</label>
+				<input class='changePwd' type="password" placeholder="请输入新密码">
+			</li>
+			<li>
+				<label >确认密码：</label>
+				<input class='resetPwd' type="password" placeholder="请再一次输入新密码">
+			</li>
+			<li id="lastBtn">
+				<button  style="background-color: #3aa1ff;" class='submitBtn' >修改</button>
+				<button class='resetBtn'>重 置</button>
+			</li>
+		</ul>
+	</div>
+</body>
+<script src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script src="../../public/layer/layer.js"></script>
+<script src="../../static/js/changePwd.js"></script>
+</html>

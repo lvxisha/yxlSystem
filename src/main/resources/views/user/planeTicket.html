@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>筛选</title>
+	<link rel="stylesheet" href="../../public/bass.css">
+	<link rel="stylesheet" href="../../public/layui/css/layui.css">
+	<link rel="stylesheet" href="../../static/css/planeTicket.css">
+</head>
+<body>
+<div class="mainCon">
+	<!-- 筛选 -->
+	<ul class="selCon">
+		<li>
+			<label>出发地</label>
+			<input type="text" class="layui-input start">
+		</li> 
+		<li>
+			<label>目的地</label>
+			<input type="text" class="layui-input end">
+		</li>
+		
+		<li>
+			<label>时间</label>
+			<input type="text" class="layui-input" id="test1">
+		</li>
+		<li>
+			<button class="layui-btn" id="seachBtn">查询</button>
+		</li>
+	</ul>
+	<!-- tab列表 -->
+	<!-- 推荐 -->
+	<div id="selTab">
+		<table class="tab">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>航班信息</th>
+					<th>出发时间</th>
+					<th>到达时间</th>
+					<th>始发站</th>
+					<th>终点站</th>
+					<th>航空公司</th>
+					<th>头等舱剩余票数</th>
+					<th>头等舱票价</th>
+					<th>头等舱剩余票数</th>
+					<th>经济舱票价</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="textCon2" >
+				
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div id="setPage2" style="text-align: center;"></div>
+	</div>
+	<!-- 查询 -->
+	<div id="reachTab">
+		<table class="tab">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>航班信息</th>
+					<th>出发时间</th>
+					<th>到达时间</th>
+					<th>始发站</th>
+					<th>终点站</th>
+					<th>航空公司</th>
+					<th>头等舱剩余票数</th>
+					<th>头等舱票价</th>
+					<th>头等舱剩余票数</th>
+					<th>经济舱票价</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="textCon">
+				
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div id="setPage"></div>
+	</div>
+</div>
+</body>
+<script src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script src="../../public/layui/layui.js"></script>
+<script src="../../static/js/planeTicket.js"></script>
+<script type="text/html" id="templateTpl">
+{{#  layui.each(d.data, function(index, item){ }}
+	<tr>
+		<td>{{item.airnumber}}</td>
+		<td>{{item.aptype}}</td>
+		<td>{{item.deptime}}</td>
+		<td>{{item.arrtime}}</td>
+		<td>{{item.startstation}}</td>
+		<td>{{item.terminus}}</td>
+		<td>{{item.company}}</td>
+		<td>{{item.firstclass}}</td>
+        <td>{{item.firstclassPrice}}</td>
+		<td>{{item.economyclass}}</td>
+		<td>{{item.economyclassPrice}}</td>
+		<td><a href="javascript:;" class="layui-btn btn" data-flyId="{{item.id}}">订票</a></td>
+	</tr>
+{{#  }); }}
+</script>
+<script type="text/html" id="templateTpl2">
+{{#  layui.each(d.data, function(index, item){ }}
+	<tr>
+		<td>{{item.airnumber}}</td>
+		<td>{{item.aptype}}</td>
+		<td>{{item.deptime}}</td>
+		<td>{{item.arrtime}}</td>
+		<td>{{item.startstation}}</td>
+		<td>{{item.terminus}}</td>
+		<td>{{item.company}}</td>
+		<td>{{item.firstclass}}</td>
+        <td>{{item.firstclassPrice}}</td>
+		<td>{{item.economyclass}}</td>
+		<td>{{item.economyclassPrice}}</td>
+		<td><a href="javascript:;" class="layui-btn btn" data-flyId="{{item.id}}">订票</a></td>
+	</tr>
+{{#  }); }}
+</script>
+<script>
+layui.use(['layer', 'form','laydate','laypage','laytpl'], function(){
+  var layer = layui.layer
+  ,form = layui.form
+  ,laypage = layui.laypage
+  ,laytpl = layui.laytpl
+  ,laydate = layui.laydate;
+  var selTime=null;
+  var pageNum = 1,pageSize=10;
+  laydate.render({
+	elem: '#test1' //指定元素
+ 	,done: function(value, date, endDate){//控件选择完毕后的回调---点击日期、清空、现在、确定均会触发。
+	    selTime = value;
+  	}
+  });
+  
+  //获取用户userId
+  var userId = layui.sessionData('myData').user.id;
+  getFlayList(10,1)//请求推荐机票接口函数
+  
+  
+  $(document).on('click', '.btn', function(event) {
+  	var aa = $(this).attr('data-flyId');
+  	layer.msg(aa);
+  	layer.open({
+    	type : 2,
+    	shade : 0.2,
+    	maxmin : true,
+        title:"选座位",
+        area:['800px','400px'],
+        content:'seat.html',
+        success:function(layero, index){
+    		var iframe = window['layui-layer-iframe' + index];
+	        setTimeout(function() {
+	            iframe.init(aa);
+	        }, 200);
+        }
+    });
+  	
+  });
+  $('#seachBtn').click(function() {
+	$('#selTab').hide();
+	$('#reachTab').show();
+  	var start = $('.start').val();
+  	var end = $('.end').val();
+  	if (start == end) {
+  		layer.msg('出发地与目的地不能一直');
+		return false;
+  	}
+  	if (start.length==0 && end.length==0) {
+		layer.msg('出发地或目的地不能为空');
+		return false;
+	}
+	seachFn(start,end,selTime,pageNum,pageSize);
+  });
+
+  //筛选函数
+  function seachFn(startstation,terminus,deptime,pageNum,pageSize){
+	  $('#setPage,#textCon').empty()
+  	var datas = new Object();
+  	if (startstation.length!=0) {
+  		datas.startstation = startstation;
+  	}
+  	if (terminus.length!=0) {
+  		datas.terminus = terminus;
+  	}
+  	if (deptime!=null) {
+  		datas.deptime = deptime;
+  	}
+  	datas.pageNum = pageNum;
+  	datas.pageSize = pageSize;
+  	$.ajax({
+  		url: '/yxl/selectFlightInfo',
+  		type: 'post',
+  		data: datas,
+  		success:function(res){
+  			console.log('查询接口返回数据：',res);
+  			if(res.code=="0000"){
+  				if(res.data!=null){
+  					if(res.data.length!=0){
+  						var getTpl = templateTpl.innerHTML
+  	  	  				,view = document.getElementById('textCon');
+  	  	  				laytpl(getTpl).render(res, function(html){
+  	  	  				  view.innerHTML = html;
+  	  	  				});
+  	  	  				
+  	  	  			 laypage.render({
+	  	  	  		   elem: 'setPage'
+	  	  	  		   ,count: res.count //数据总数，从服务端得到
+	  	  	  		   ,curr:pageNum
+	  	  	  		   ,limits:[10, 20, 30, 40, 50]
+	  	  	  		   ,limit:10
+	  	  	  		   ,layout:['prev', 'page', 'next','count','limit','skip']
+	  	  	  		   ,jump: function(obj, first){
+	  	  	  		     // obj包含了当前分页的所有参数，比如：
+	  	  	  		     console.log(obj.curr); 
+	  	  	  		     console.log(obj.limit);
+	  	  	  		    
+	  	  	  		     if(!first){ //首次不执行
+							pageNum = obj.curr;//得到当前页，以便向服务端请求对应页的数据。
+	  	  	  		     	pageSize = obj.limit; //得到每页显示的条数
+	  	  	  		  		seachFn(startstation,terminus,deptime,pageNum,pageSize);//
+	  	  	  		     }
+	  	  	  		   }
+	  	  	  		 });
+  	  	  				
+  	  	  				
+  					}else{
+  						$('#setPage').text('暂无数据');
+  					}
+  				}else{
+  					$('#setPage').text('暂无数据');
+  				}
+  			}else{
+  				$('#setPage').text('暂无数据');
+  			}
+
+  		},
+  		error:function(e){
+  			layer.msg('服务器出现异常');
+  		}
+  	})
+  	
+  }
+  
+  //请求推荐机票列表,selTab显示
+  function getFlayList(pageSize,pageNum){
+  	$.ajax({
+  		url:"/yxl/recommendationTicket",
+  		type:"post",
+  		data:{pageSize:pageSize,pageNum:pageNum},
+  		success:function(res){
+  		  		console.log('机票列表',res);
+  		  		if (res.code=="0000") {
+  		  			var getTpl = templateTpl2.innerHTML
+  		  				,view = document.getElementById('textCon2');
+  		  				laytpl(getTpl).render(res, function(html){
+  		  				  view.innerHTML = html;
+  		  				});
+  		  				
+  		  			 laypage.render({
+  			  		   elem: 'setPage2'
+  			  		   ,count: res.count //数据总数，从服务端得到
+  			  		   ,curr:pageNum
+  			  		   ,limits:[10, 20, 30, 40, 50]
+  			  		   ,limit:10
+  			  		   ,layout:['prev', 'page', 'next','count','limit','skip']
+  			  		   ,jump: function(obj, first){
+  			  		     // obj包含了当前分页的所有参数，比如：
+  			  		     console.log(obj.curr); 
+  			  		     console.log(obj.limit);
+  			  		    
+  			  		     if(!first){ //首次不执行
+  							pageNum = obj.curr;//得到当前页，以便向服务端请求对应页的数据。
+  			  		     	pageSize = obj.limit; //得到每页显示的条数
+  			  		     	getFlayList(pageNum,pageSize);//
+  			  		     }
+  			  		   }
+  			  		 }); /* */
+  					
+  		  		}else{
+  		  			layer.msg(data.message);
+  		  		}
+  		  	
+  		}
+  	});
+  }
+  //失去焦点
+  function startFn(dom){
+  	$(dom).blur(function() {
+  		var start = $('.start').val();
+  		var end = $('.end').val();
+  		if (start.length!=0) {
+			console.log(1111)
+  		}
+  		if (end.length!=0) {
+  			console.log(22)
+  		}
+  		if(start.length!=0 && end.length!=0){
+  			console.log(333)
+  		}
+  	});
+  }
+
+});
+</script>
+</html>

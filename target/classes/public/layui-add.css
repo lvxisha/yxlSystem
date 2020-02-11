@@ -1,0 +1,246 @@
+/*layui 导航菜单改造*/
+.index-left-nav {
+    width: 256px;
+    background-color: #001529;
+    top: 20px;
+}
+
+.layui-nav-itemed>.layui-nav-child {
+    background-color: rgba(0,0,0,.5)!important;
+    padding: 8px 0px;
+}
+
+.layui-nav-tree .layui-nav-item a:hover {
+    background-color: rgba(0,0,0,0);
+    color: #fff;
+}
+
+.layui-nav .layui-nav-item a {
+    padding: 0px 25px;
+}
+
+.layui-nav-bar {
+    opacity: 0 !important;
+}
+
+.layui-nav .layui-nav-more {
+    right: 15px;
+}
+
+.layui-nav-tree .layui-this {
+    background-color: #1890ff;
+}
+
+.layui-nav-tree .layui-this>a {
+    background-color: #1890ff;
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this {
+    background-color: #1890ff;
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this a {
+    background-color: #1890ff;
+}
+
+.layui-laydate td.layui-this {
+    background: #1aa3ff !important;
+}
+
+.layui-laydate-content tr td.laydate-selected {
+    background-color: rgba(26,163,255,0.5);
+}
+
+.layui-laydate-content tr td.laydate-selected:hover {
+    background-color: rgb(26,163,255) !important;
+}
+
+.laydate-selected.laydate-day-next, .laydate-selected.laydate-day-prev {
+    background: #f8f8f8 !important;
+}
+
+.layui-form-item {
+    margin-bottom: 0;
+}
+
+.layui-input-block {
+    margin-left: 0;
+    min-height: 24px;
+}
+
+.layui-form-switch {
+    height: 24px;
+    line-height: 22px;
+    margin-top: 0;
+    min-width: 64px;
+    width: 64px;
+}
+
+.layui-form-onswitch {
+    background-color: #3aa1ff;
+}
+
+.layui-form-onswitch {
+    border-color: #3aa1ff;
+}
+
+.layui-form-switch em {
+    margin-right: 5px;
+}
+
+.layui-form-onswitch em {
+    margin-right: 21px;
+    margin-left: 5px;
+}
+
+/*时间插件*/
+.layui-laydate td.layui-this {
+    background: #1aa3ff !important;
+}
+
+.layui-laydate-content tr td.laydate-selected {
+    background-color: rgba(26,163,255,0.5);
+}
+
+.layui-laydate-content tr td.laydate-selected:hover {
+    background-color: rgb(26,163,255) !important;
+}
+
+.laydate-selected.laydate-day-next, .laydate-selected.laydate-day-prev {
+    background: #f8f8f8 !important;
+}
+
+.layui-laydate li.layui-this {
+    background: #3aa1ff !important;
+}
+
+.layui-laydate-header i:hover {
+    color: #3aa1ff !important;
+}
+
+.layui-laydate-header span:hover {
+    color: #3aa1ff !important;
+}
+
+.laydate-footer-btns span:hover {
+    color: #3aa1ff !important;
+}
+
+/*勾选框*/
+.layui-form-item .layui-form-checkbox[lay-skin=primary] {
+    margin: 0px !important;
+}
+
+.layui-form-checkbox[lay-skin=primary]:hover i {
+    border-color: #3aa1ff !important;
+}
+
+.layui-form-checked[lay-skin=primary] i {
+    background: #3aa1ff !important;
+    border-color: #3aa1ff !important;
+}
+
+.layui-form-radio>i:hover, .layui-form-radioed>i {
+    color: #3aa1ff;
+}
+/*分页确定按钮*/
+.layui-laypage button {
+    color: #738299;
+}
+
+.layui-laypage button:hover {
+    color: #3aa1ff
+};
+
+.layui-laypage-skip input:focus {
+    border: 1px solid #3aa1ff !important;
+}
+
+.layui-input:hover, .layui-textarea:hover {
+    border-color: #3aa1ff !important;
+}
+
+.layui-laypage-skip input:focus {
+    border: 1px solid #3aa1ff !important;
+}
+
+/*弹窗改造*/
+/*去除弹窗外边框*/
+.layui-layer-rim {
+    border: none !important;
+}
+/*去除顶部背景色*/
+.layui-layer-title {
+    background-color: #fff !important;
+    padding: 0px !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+/*调整叉号位置*/
+.layui-layer-setwin .layui-layer-close2 {
+    right: -9px !important;
+    top: -10px !important;
+}
+
+.layui-layer-new {
+    border: none;
+    border-radius: 10px !important;
+}
+
+.layui-layer-iframe .layui-layer-btn, .layui-layer-page .layui-layer-btn {
+    padding: 15px 0px 30px !important;
+}
+
+.layui-layer-btn {
+    text-align: center !important;
+}
+
+.layui-layer-btn a {
+    height: 32px !important;
+    line-height: 32px !important;
+    margin: 5px 25px 0px !important;
+    padding: 0px 20px !important;
+    font-size: 14px;
+    box-shadow: 0 0 2px #f0f0f0;
+    letter-spacing: 2px;
+    border-radius: 3px !important;
+}
+
+.layui-layer-btn a:hover {
+    opacity: 0.8 !important;
+}
+
+.layui-layer-btn0 {
+    border-color: #3aa1ff !important;
+    color: #fff !important;
+}
+
+.layui-layer-btn1 {
+    border-color: #ff6b7a !important;
+    color: #ff6b7a !important;
+}
+
+.layui-form-select dl dd.layui-this {
+    background: #3aa1ff !important;
+}
+
+.layui-laydate-footer span:hover {
+    color: #3aa1ff !important;
+}
+
+.layui-laydate-footer span[lay-type=date] {
+    color: #3aa1ff !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

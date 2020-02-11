@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuan.mapper.ProclamationMapper" >
+  <resultMap id="BaseResultMap" type="com.yuan.model.Proclamation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="Addpeople" property="addpeople" jdbcType="VARCHAR" />
+    <result column="ifdisplay" property="ifdisplay" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, content, createtime, Addpeople, ifdisplay
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from proclamation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from proclamation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuan.model.Proclamation" >
+    insert into proclamation (id, title, content, 
+      createtime, Addpeople, ifdisplay
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{addpeople,jdbcType=VARCHAR}, #{ifdisplay,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuan.model.Proclamation" >
+    insert into proclamation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="addpeople != null" >
+        Addpeople,
+      </if>
+      <if test="ifdisplay != null" >
+        ifdisplay,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addpeople != null" >
+        #{addpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdisplay != null" >
+        #{ifdisplay,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuan.model.Proclamation" >
+    update proclamation
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addpeople != null" >
+        Addpeople = #{addpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdisplay != null" >
+        ifdisplay = #{ifdisplay,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuan.model.Proclamation" >
+    update proclamation
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      Addpeople = #{addpeople,jdbcType=VARCHAR},
+      ifdisplay = #{ifdisplay,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

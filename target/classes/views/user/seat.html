@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>机票选座位</title>
+	<link rel="stylesheet" href="../../public/bass.css">
+	<link rel="stylesheet" href="../../public/layui/css/layui.css">
+	<style>	
+		body{
+			background-color: #fff;
+		}
+
+		.mainCon{
+			padding: 20px;
+		}
+		.hasChild{
+			display: inline-block;
+			background-color: #ccc;
+			padding: 0 10px;
+			line-height: 30px;
+			min-width: 60px;
+			text-align: center;
+			cursor: pointer;
+			border-radius: 2px;
+			color: #fff;
+		}
+
+		/*座位状态*/
+		.mainItem{
+			margin-bottom: 20px;
+		}
+		.mainItem li{
+			display: inline-block;
+		}
+		.bg:before{
+			display: inline-block;
+			content: '';
+			width: 25px;
+			height: 10px;
+			margin-right: 5px;
+		}
+		.bg{
+			margin-left: 10px;
+		}
+		.bg1:before{
+			background-color: #ccc;
+		}
+		.bg2:before{
+			background-color: #CCECFA;
+		}
+		.bg3:before{
+			background-color: #FEC5C8;
+		}
+		.bg4:before{
+			background-color: #78C0FF;
+		}
+		.selected{
+			background-color: #78C0FF;
+		}
+		.noSet{
+			background-color: #CCECFA;
+		}
+	</style>
+</head>
+<body style="overflow-y: scroll;">
+	<div class="mainCon" data-id="">
+		<ul  class="mainItem">
+			<li>座位状态：</li>
+			<li class="bg bg1">已买</li>
+			<li class="bg bg2">未购买</li>
+			<li class="bg bg3">购买中</li>
+			<li class="bg bg4">选中</li>
+		</ul>
+		<div class="mainItem" >
+			<ul id="textCon">
+			</ul>
+			<ul id="textCon2" style="margin-top: 20px;">
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script src="../../public/layui/layui.js"></script>
+<script type="text/html" id="templateTpl">
+
+	<li>头等舱:</li>
+{{#  layui.each(d.data, function(index, item){ }}
+		{{#  if(item.choice == true){ }}
+			<li  class="hasChild layui-btn-disabled" data-value="{{item.id}}" title="该座位已售">{{item.seatnum}}</li>
+		{{#  } }}
+		{{#  if(item.choice == false){ }}
+			<li  class="hasChild noSet" data-value="{{item.id}}" title="票价：{{item.price}}">{{item.seatnum}}</li>
+		{{#  } }}
+{{#  }); }}
+</script>
+<script type="text/html" id="templateTpl2">
+
+	<li>经济舱:</li>
+{{#  layui.each(d.data, function(index, item){ }}
+	{{#  if(item.choice == true){ }}
+		<li  class="hasChild layui-btn-disabled" data-value="{{item.id}}" title="该座位已售">{{item.seatnum}}</li>
+	{{#  } }}
+	{{#  if(item.choice == false){ }}
+		<li  class="hasChild noSet" data-value="{{item.id}}" title="票价：{{item.price}}">{{item.seatnum}}</li>
+	{{#  } }}
+{{#  }); }}
+</script>
+<script>
+	function init(parme1){
+		var aa = parme1;
+		$('.mainCon').attr('data-id', aa);
+	}
+
+	layui.use(['form','laytpl','layer','laypage'],function(){
+		var form = layui.form,laytpl = layui.laytpl,layer = layui.layer,laypage=layui.laypage;
+		var flyId = $('.mainCon').attr('data-id');
+		
+		setTimeout(function(){
+			getSetData($('.mainCon').attr('data-id'))
+		},800)
+		$('.mainItem').on('click', '.noSet', function() {
+			$(this).addClass('selected').siblings().removeClass('selected');
+			var currSelected = $(this).attr('data-value');//座位ID
+			layer.confirm('确定购买该座位么',function(){
+				console.log(currSelected);
+				layer.closeAll();
+
+				/*$.post('/path/to/file', {data1: currSelected}, function(data) {
+					console.log('座位Id',data);
+					layer.msg(data.message);
+					layer.closeAll();
+				});*/
+
+			})
+
+		});
+		
+		//根据飞机ID显示座位
+		function getSetData(plyId){
+			$.ajax({
+				url:"/yxl/selectSeatInfo",
+				data:{flightId:plyId},
+				type:"post",
+				success:function(res){
+					console.log('座位信息',res);
+					if(res.code=="0000"){
+						if(res.data!=null){
+							if(res.data.length!=0){
+								var toudeng = [];
+								var jingjin = [];
+								var newData = {};
+								var objs = new Object();
+								$.each(res.data,function(i,items){
+									if(items.rank){
+										toudeng.push(items);
+									}else{
+										jingjin.push(items)
+									}
+								})
+								
+								newData.data =toudeng;
+								objs.data = jingjin;
+								
+								console.log(newData,objs);
+								console.log(newData.toudeng);
+								var getTpl = templateTpl.innerHTML
+		  	  	  				,view = document.getElementById('textCon');
+		  	  	  				laytpl(getTpl).render(newData, function(html){
+		  	  	  				  view.innerHTML = html;
+		  	  	  				});
+			  	  	  			var getTpl2 = templateTpl2.innerHTML
+		  	  	  				,view2 = document.getElementById('textCon2');
+		  	  	  				laytpl(getTpl2).render(objs, function(html){
+		  	  	  				  view2.innerHTML = html;
+		  	  	  				});
+							}else{
+								layer.alert("暂无座位信息");
+							}
+							
+						}else{
+							layer.alert("暂无座位信息");
+						}	
+					}else{
+						layer.alert(res.message);
+					}
+				},
+				
+			})
+			
+		}
+	})
+</script>
+</html> 

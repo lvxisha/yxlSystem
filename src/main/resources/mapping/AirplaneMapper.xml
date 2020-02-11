@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuan.mapper.AirplaneMapper" >
+  <resultMap id="BaseResultMap" type="com.yuan.model.Airplane" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="airnumber" property="airnumber" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="firstclass" property="firstclass" jdbcType="INTEGER" />
+    <result column="aptype" property="aptype" jdbcType="VARCHAR" />
+    <result column="economyclass" property="economyclass" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, airnumber, company_id, firstclass, aptype, economyclass
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from airplane
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from airplane
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuan.model.Airplane" >
+    insert into airplane (id, airnumber, company_id, 
+      firstclass, aptype, economyclass
+      )
+    values (#{id,jdbcType=INTEGER}, #{airnumber,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{firstclass,jdbcType=INTEGER}, #{aptype,jdbcType=VARCHAR}, #{economyclass,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuan.model.Airplane" >
+    insert into airplane
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="airnumber != null" >
+        airnumber,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="firstclass != null" >
+        firstclass,
+      </if>
+      <if test="aptype != null" >
+        aptype,
+      </if>
+      <if test="economyclass != null" >
+        economyclass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="airnumber != null" >
+        #{airnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="firstclass != null" >
+        #{firstclass,jdbcType=INTEGER},
+      </if>
+      <if test="aptype != null" >
+        #{aptype,jdbcType=VARCHAR},
+      </if>
+      <if test="economyclass != null" >
+        #{economyclass,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuan.model.Airplane" >
+    update airplane
+    <set >
+      <if test="airnumber != null" >
+        airnumber = #{airnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="firstclass != null" >
+        firstclass = #{firstclass,jdbcType=INTEGER},
+      </if>
+      <if test="aptype != null" >
+        aptype = #{aptype,jdbcType=VARCHAR},
+      </if>
+      <if test="economyclass != null" >
+        economyclass = #{economyclass,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuan.model.Airplane" >
+    update airplane
+    set airnumber = #{airnumber,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      firstclass = #{firstclass,jdbcType=INTEGER},
+      aptype = #{aptype,jdbcType=VARCHAR},
+      economyclass = #{economyclass,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   
+</mapper>

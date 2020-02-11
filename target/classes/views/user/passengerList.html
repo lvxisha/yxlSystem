@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>乘客列表</title>
+	<link rel="stylesheet" href="../../public/layui/css/layui.css"/>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.main-body{
+			width: 96%;
+			margin: 10px auto;
+		}
+		.tab{
+			width: 100%;
+			margin-top: 20px;
+		}
+		.tab tr{
+			border:1px solid #ccc;
+			line-height: 40px;
+		}
+		.tab tr td{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="main-body">
+		<button class="layui-btn">添加乘客</button>
+		<table class="tab layui-form">
+			<thead>
+				<tr>
+					<th style="width: 50px;"></th>
+					<th style="width: 120px;">姓名</th>
+					<th>类型</th>
+					<th>证件号码</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tabCon">
+				<tr>
+					<td><input type="checkbox" name="" title="" lay-skin="primary" checked></td>
+					<td>张三三</td>
+					<td>男</td>
+					<td>411111888889898898</td>
+					<td>
+						<a href="javascript:;" class="editBtn">编辑</a>
+						<a href="javascript:;" class="delBtn">删除</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+<script src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script src="../../public/layui/layui.js"></script>
+<script id="templateTpl" type="text/html">
+	{{#  layui.each(d.data, function(index, item){ }}
+		<tr>
+			<td><input type="checkbox" name="" title="" lay-skin="primary" checked></td>
+			<td>张三三</td>
+			<td>男</td>
+			<td>411111888889898898</td>
+			<td>
+				<a href="javascript:;" class="editBtn">编辑</a>
+				<a href="javascript:;" class="delBtn">删除</a>
+			</td>
+		</tr>
+	{{#  }); }}
+</script>
+<script>
+	$(function(){
+		layui.use(['form','laytpl'],function(){
+			var form = layui.form,
+				laytpl = layui.laytpl;
+			var data;
+			var getTpl = templateTpl.innerHTML
+			,view = document.getElementById('tabCon');
+			laytpl(getTpl).render(data, function(html){
+			  view.innerHTML = html;
+			});
+
+
+		})
+	})
+</script>
+</html>

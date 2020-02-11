@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单状态-订单详细信息</title>
+	<link rel="stylesheet" href="../../public/bass.css">
+	<link rel="stylesheet" href="../../public/layui/css/layui.css">
+	<style>
+		.mainCon{
+			padding: 20px;
+		}
+	</style>
+</head>
+<body class="layui-layout-body">
+	<div class="mainCon layui-form" data-setId="">
+		<form class="layui-form layui-form-pane" style="margin:0;">
+	      <div class="layui-form-item">
+	        <label class="layui-form-label">航班信息</label>
+	        <div class="layui-input-block">
+	          <input type="text" name="flyInfo" autocomplete="off"
+	            placeholder="航班信息" class="layui-input" readonly>
+	        </div>
+	      </div>
+	      <div class="layui-form-item">
+	        <label class="layui-form-label">座位</label>
+	        <div class="layui-input-block">
+	          <input type="text" name="serialNumber" autocomplete="off"
+	            placeholder="座位" class="layui-input" readonly>
+	        </div>
+	      </div>
+	      <div class="layui-form-item">
+	        <label class="layui-form-label">座位类型</label>
+	        <div class="layui-input-block">
+	          <input type="text" name="remark" autocomplete="off"
+	            placeholder="类型" class="layui-input" readonly>
+	        </div>
+	      </div>
+	    </form>
+	</div>
+</body>
+<script src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script src="../../public/layui/layui.js"></script>
+<script>
+	function init(parme1){
+		var setId = parme1;
+		$('.mainCon').attr('data-setId');
+	}
+	layui.use(['form','layer'],function(){
+		var form = layui.form,layer = layui.layer;
+
+		function getSetDetail(){
+			$.post('/path/to/file', {param1: 'value1'}, function(data) {
+				console.log('座位详细信息',data)
+			});
+		}
+	})
+</script>
+</html>

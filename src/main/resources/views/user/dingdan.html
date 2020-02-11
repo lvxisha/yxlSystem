@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单状态</title>
+	<link rel="stylesheet" href="../../public/bass.css">
+	<link rel="stylesheet" href="../../public/layui/css/layui.css">
+	<style>
+		body{
+			background-color: #fff;
+		}
+		.mainCon{
+			padding:20px;
+		}
+		.clearfl{
+			float: left;
+		}
+		.clearfr{
+			float: right;
+			cursor: pointer;
+		}
+		.hasChild{
+			border-bottom: 1px solid #ccc;
+			padding: 10px;
+		}
+		.spans{
+			color: #78C0FF;
+		}
+		.ps{
+			margin-bottom:5px;	
+			font-size: 16px;		
+		}
+		#setPage{
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="mainCon">
+		<div class="layui-tab" lay-filter="demo">
+			<ul class="layui-tab-title">
+				<li class="layui-this">已完成订单</li>
+			</ul>
+
+			<div class="layui-tab-content">
+				<div class="layui-tab-item layui-show">
+					<ul id="tabCon1">
+						<li class="layui-clear hasChild">
+							<div class="clearfl">
+								<p class="ps">航班班次</p>
+								<span class="spans">12121212111</span>
+							</div>
+							<div class="clearfr rightCon" data-setId="9">
+								<p>订票成功</p>
+								<span>经济舱10号</span>
+							</div>
+						</li>
+						<li class="layui-clear hasChild">
+							<div class="clearfl">
+								<p class="ps">航班班次</p>
+								<span class="spans">12121212111</span>
+							</div>
+							<div class="clearfr rightCon" data-setId="10">
+								<p>已退票</p>
+								<span>经济舱10号</span>
+							</div>
+						</li>
+					</ul>
+					<div id="setPage"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script src="../../public/layui/layui.js"></script>
+<script type="text/html" id="temTpl">
+{{#  layui.each(d.data, function(index, item){ }}
+<li class="layui-clear hasChild">
+	<div class="clearfl">
+		<p class="ps">航班班次</p>
+		<span class="spans">12121212111</span>
+	</div>
+	<div class="clearfr rightCon" data-setId='10'>
+		<p>订票成功</p>
+		<span>经济舱10号</span>
+	</div>
+</li>
+{{#  }); }}
+</script>
+<script>
+	layui.use(['form','laypage','layer','laytpl','element'],function(){
+		var form = layui.form,
+		layer = layui.layer,
+		laytpl = layui.laytpl,
+		laypage = layui.laypage,
+		element = layui.element;
+
+		// setPage
+		 laypage.render({
+		   elem: 'setPage'
+		   ,count: 70 //数据总数，从服务端得到
+		   ,limits:[10, 20, 30, 40, 50]
+		   ,limit:10
+		   ,layout:['prev', 'page', 'next','count','limit','skip']
+		   ,jump: function(obj, first){
+		     // obj包含了当前分页的所有参数，比如：
+		     console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+		     console.log(obj.limit); //得到每页显示的条数
+		    
+		     if(!first){ //首次不执行
+
+		     }
+		   }
+		 });
+		//点击显示对应的票价信息
+		$('#tabCon1').on('click', '.rightCon', function() {
+			var setId = $(this).attr('data-setId');
+			layer.open({
+				title:'机票信息',
+				type : 2,
+		    	shade : 0.2,
+		    	maxmin : true,
+		    	area:['800px','400px'],
+		        content:'page4.html',
+		        success:function(layero, index){
+		    		var iframe = window['layui-layer-iframe' + index];
+			        setTimeout(function() {
+			            iframe.init(setId);
+			        }, 200);
+		        }
+			})
+		});
+		//订单列表
+		function getDataList(){
+			$.ajax({
+				url: '/path/to/file',
+				type: 'post',
+				// data: {param1: 'value1'},
+				success:function(res){
+					console.log('订单状态列表',res);
+					if (res.code=="0000") {//temTpl
+
+					}else{
+						layer.alert(res.message);
+					}
+				},
+				error:function(e){
+					layer.msg('服务器出现异常');
+				}
+			})
+			
+		}
+	})
+</script>
+</html>

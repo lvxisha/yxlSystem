@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuan.mapper.FlightMapper" >
+  <resultMap id="BaseResultMap" type="com.yuan.model.Flight" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="airplane_id" property="airplaneId" jdbcType="INTEGER" />
+    <result column="startstation" property="startstation" jdbcType="VARCHAR" />
+    <result column="terminus" property="terminus" jdbcType="VARCHAR" />
+    <result column="deptime" property="deptime" jdbcType="TIMESTAMP" />
+    <result column="arrtime" property="arrtime" jdbcType="TIMESTAMP" />
+    <result column="firstclass" property="firstclass" jdbcType="VARCHAR" />
+    <result column="economyclass" property="economyclass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, airplane_id, startstation, terminus, deptime, arrtime, firstclass, economyclass
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flight
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flight
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuan.model.Flight" >
+    insert into flight (id, airplane_id, startstation, 
+      terminus, deptime, arrtime, 
+      firstclass, economyclass)
+    values (#{id,jdbcType=INTEGER}, #{airplaneId,jdbcType=INTEGER}, #{startstation,jdbcType=VARCHAR}, 
+      #{terminus,jdbcType=VARCHAR}, #{deptime,jdbcType=TIMESTAMP}, #{arrtime,jdbcType=TIMESTAMP}, 
+      #{firstclass,jdbcType=VARCHAR}, #{economyclass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuan.model.Flight" >
+    insert into flight
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="airplaneId != null" >
+        airplane_id,
+      </if>
+      <if test="startstation != null" >
+        startstation,
+      </if>
+      <if test="terminus != null" >
+        terminus,
+      </if>
+      <if test="deptime != null" >
+        deptime,
+      </if>
+      <if test="arrtime != null" >
+        arrtime,
+      </if>
+      <if test="firstclass != null" >
+        firstclass,
+      </if>
+      <if test="economyclass != null" >
+        economyclass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="airplaneId != null" >
+        #{airplaneId,jdbcType=INTEGER},
+      </if>
+      <if test="startstation != null" >
+        #{startstation,jdbcType=VARCHAR},
+      </if>
+      <if test="terminus != null" >
+        #{terminus,jdbcType=VARCHAR},
+      </if>
+      <if test="deptime != null" >
+        #{deptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrtime != null" >
+        #{arrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstclass != null" >
+        #{firstclass,jdbcType=VARCHAR},
+      </if>
+      <if test="economyclass != null" >
+        #{economyclass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuan.model.Flight" >
+    update flight
+    <set >
+      <if test="airplaneId != null" >
+        airplane_id = #{airplaneId,jdbcType=INTEGER},
+      </if>
+      <if test="startstation != null" >
+        startstation = #{startstation,jdbcType=VARCHAR},
+      </if>
+      <if test="terminus != null" >
+        terminus = #{terminus,jdbcType=VARCHAR},
+      </if>
+      <if test="deptime != null" >
+        deptime = #{deptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrtime != null" >
+        arrtime = #{arrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstclass != null" >
+        firstclass = #{firstclass,jdbcType=VARCHAR},
+      </if>
+      <if test="economyclass != null" >
+        economyclass = #{economyclass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuan.model.Flight" >
+    update flight
+    set airplane_id = #{airplaneId,jdbcType=INTEGER},
+      startstation = #{startstation,jdbcType=VARCHAR},
+      terminus = #{terminus,jdbcType=VARCHAR},
+      deptime = #{deptime,jdbcType=TIMESTAMP},
+      arrtime = #{arrtime,jdbcType=TIMESTAMP},
+      firstclass = #{firstclass,jdbcType=VARCHAR},
+      economyclass = #{economyclass,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 查询航班信息 -->
+   <select id="selectFlightInformation" resultType="com.yuan.model.entity.GetFlightInformation">
+ SELECT
+	a.id,
+	a.airplane_id,
+	a.startstation,
+	a.terminus,
+	a.deptime,
+	a.arrtime,
+	b.airnumber,
+	b.aptype,
+	a.firstclass,
+	a.economyclass,
+	d.firstclassPrice,
+	e.economyclassPrice,
+	c.company 
+FROM
+	flight a
+	LEFT JOIN airplane b ON a.airplane_id = b.id
+	LEFT JOIN company c ON c.id = b.company_id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price firstclassPrice FROM seat WHERE rank = 1 and choice=0) d ON d.flight_id = a.id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price economyclassPrice FROM seat WHERE rank = 0 and choice=0) e ON e.flight_id = a.id
+	LIMIT #{begin},#{pageSize}
+  </select>
+   <!-- 根据条件查询航班信息 -->
+   <select id="selectFlightInfo" resultType="com.yuan.model.entity.GetFlightInformation" parameterType="com.yuan.model.entity.SearchConditions">
+SELECT
+	a.id,
+	a.airplane_id,
+	a.startstation,
+	a.terminus,
+	a.deptime,
+	a.arrtime,
+	b.airnumber,
+	b.aptype,
+	a.firstclass,
+	a.economyclass,
+	d.firstclassPrice,
+	e.economyclassPrice,
+	c.company 
+FROM
+	flight a
+	LEFT JOIN airplane b ON a.airplane_id = b.id
+	LEFT JOIN company c ON c.id = b.company_id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price firstclassPrice FROM seat WHERE rank = 1 and choice=0) d ON d.flight_id = a.id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price economyclassPrice FROM seat WHERE rank = 0 and choice=0) e ON e.flight_id = a.id
+
+	<where>
+      <if test="startstation != null">
+          a.startstation = #{startstation}
+      </if>
+      <if test="terminus != null">
+          AND a.terminus = #{terminus} 
+
+      </if>
+      <if test="deptime != null">
+          AND a.deptime like '%${deptime}%' 
+      </if>
+      LIMIT #{begin},#{pageSize}
+       <!-- ORDER BY a.deptime DESC -->
+	<!--   ORDER BY a.deptime DESC 
+	 LIMIT #{begin},#{pageSize}
+	 <if test="begin != null">
+        LIMIT  #{begin}
+      </if>
+      <if test="pageSize != null">
+        LIMIT #{begin},#{pageSize}
+      </if> -->
+    </where>
+  </select>
+   <!-- 根据条件统计航班数 -->
+   <select id="selectFlightInfoCount" resultType="java.lang.Integer" parameterType="com.yuan.model.entity.SearchConditions">
+ SELECT
+    count(*)
+FROM
+	flight a
+	LEFT JOIN airplane b ON a.airplane_id= b.id
+	left join company c on c.id=b.company_id
+	<where>
+      <if test="startstation != null">
+          a.startstation = #{startstation}
+      </if>
+      <if test="terminus != null">
+          AND a.terminus = #{terminus} 
+      </if>
+      <if test="deptime != null">
+          AND a.deptime like '%${deptime}%' 
+      </if>
+    </where>
+  </select>
+  	<!-- 头等舱 -->
+  <update id="updateFirstclass" parameterType="com.yuan.model.Flight" >
+    UPDATE flight set
+     <if test="choice == true">
+	firstclass=firstclass+1
+	</if>
+    <if test="choice == false">
+	firstclass=firstclass-1
+	</if>
+	where  id=#{flightId,jdbcType=INTEGER}
+	</update>
+	<!-- 经济舱 -->
+	<update id="updateEconomyclass" parameterType="com.yuan.model.Flight" >
+	UPDATE flight set
+	<if test="choice == true">
+	economyclass=economyclass+1
+	</if>
+	<if test="choice == false">
+	economyclass=economyclass-1
+	</if>
+	where  id=#{flightId,jdbcType=INTEGER}
+	</update>
+	<!-- 根据出发地和目的地查询机票信息 -->
+	<select id="selectRecommendationTicket" resultType="com.yuan.model.entity.GetFlightInformation" >
+SELECT
+	a.id,
+	a.airplane_id,
+	a.startstation,
+	a.terminus,
+	a.deptime,
+	a.arrtime,
+	b.airnumber,
+	b.aptype,
+	a.firstclass,
+	a.economyclass,
+	d.firstclassPrice,
+	e.economyclassPrice,
+	c.company 
+FROM
+	flight a
+	LEFT JOIN airplane b ON a.airplane_id = b.id
+	LEFT JOIN company c ON c.id = b.company_id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price firstclassPrice FROM seat WHERE rank = 1 and choice=0) d ON d.flight_id = a.id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price economyclassPrice FROM seat WHERE rank = 0 and choice=0) e ON e.flight_id = a.id
+ where
+      a.startstation = #{startstation,jdbcType=VARCHAR}
+       AND a.terminus = #{terminus,jdbcType=VARCHAR} 
+     LIMIT #{page.begin},#{page.pageSize} 
+    
+  </select>
+  <select  id="selectFlightCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+	SELECT
+	count(a.id)
+FROM
+	flight a
+	LEFT JOIN airplane b ON a.airplane_id = b.id
+	LEFT JOIN company c ON c.id = b.company_id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price firstclassPrice FROM seat WHERE rank = 1 and choice=0) d ON d.flight_id = a.id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price economyclassPrice FROM seat WHERE rank = 0 and choice=0) e ON e.flight_id = a.id
+ </select>
+ 
+  <select  id="FlightCount" resultType="java.lang.Integer" parameterType="com.yuan.model.entity.RecommendationTicket" >
+	SELECT
+	count(a.id)
+FROM
+	flight a
+	LEFT JOIN airplane b ON a.airplane_id = b.id
+	LEFT JOIN company c ON c.id = b.company_id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price firstclassPrice FROM seat WHERE rank = 1 and choice=0) d ON d.flight_id = a.id
+	LEFT JOIN ( SELECT DISTINCT flight_id, price economyclassPrice FROM seat WHERE rank = 0 and choice=0) e ON e.flight_id = a.id
+ where
+  a.startstation = #{startstation,jdbcType=VARCHAR}
+       AND a.terminus = #{terminus,jdbcType=VARCHAR} 
+ </select>
+ <!-- 机票改签（查找出发站） -->
+  <!-- <select  id="selectStartstation" resultType="java.lang.Integer" parameterType="java.lang.String" >
+ 
+ </select> -->
+</mapper>

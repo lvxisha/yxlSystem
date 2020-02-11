@@ -1,0 +1,408 @@
+body,html {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: #f2f6fa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: PingFang SC,Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,\\5FAE\8F6F\96C5\9ED1,STHeiti,\\534E\6587\7EC6\9ED1,sans-serif;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    width: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+input::-webkit-input-placeholder {
+    color: #ddd;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+input::-moz-input-placeholder {
+    color: #ddd;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+input::-ms-input-placeholder {
+    color: #ddd;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea::-webkit-input-placeholder {
+    color: #ddd;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+textarea::-moz-input-placeholder {
+    color: #ddd;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+textarea::-ms-input-placeholder {
+    color: #ddd;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+input,textarea,select,button {
+    outline: none;
+    border: 0;
+    box-sizing: border-box;
+}
+
+* {
+    font-weight: 400;
+}
+
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.color1 {
+	/*color:#424f65;*/
+    color: #ff6b7a;
+    font-weight: bold;
+}
+/*滚动条*/
+/*::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track {background-color:rgba(0,0,0,0);}
+::-webkit-scrollbar-thumb{background-color:#dfdfdf;border-radius:5px;}*/
+
+/*弹窗背景*/
+.lcg-bg0 {
+    position: fixed;
+    background-color: rgba(0,0,0,1);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg1 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.1);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg2 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.2);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg3 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.3);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg4 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg5 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg6 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.6);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg7 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg8 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.8);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.lcg-bg9 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.9);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+/*弹窗*/
+.lcg-pop1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.lcg-pop2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+}
+
+.lcg-pop3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+}
+
+.lcg-pop4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+}
+/*按钮*/
+.lcg-btn1 {
+    width: 80px;
+    height: 30px;
+    box-shadow: 0 0 2px #ddd;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+
+.lcg-btn2 {
+    width: 100px;
+    height: 32px;
+    box-shadow: 0 0 2px #ddd;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 32px;
+    letter-spacing: 1px;
+}
+
+.lcg-btn3 {
+    width: 110px;
+    height: 34px;
+    box-shadow: 0 0 2px #ddd;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 34px;
+    letter-spacing: 1px;
+}
+
+.lcg-btn4 {
+    width: 120px;
+    height: 36px;
+    box-shadow: 0 0 2px #ddd;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 36px;
+    letter-spacing: 1px;
+}
+
+.lcg-btn5 {
+    border-radius: 3px;
+    box-shadow: 0 0 2px #f0f0f0;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+/*权限套餐-添加套餐*/
+.lcg-btn6 {
+    box-shadow: 0 0 2px #ddd;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 32px;
+    letter-spacing: 1px;
+}
+
+/*字体颜色*/
+.colorffffff {
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+/*背景色*/
+.addbg1 {
+    background-color: #1890ff !important;
+}
+
+/*透明度*/
+.opacity-add1 {
+    color: #fff !important;
+}
+
+/*阴影*/
+.boxs1 {
+    box-shadow: 0 0 6px #eee;
+    border: 1px solid #eee;
+}
+
+/*删除弹窗*/
+.view-del {
+    margin-top: 50px;
+}
+
+.view-del p {
+    color: #424f65;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+
+/*分页*/
+.vote-paging {
+}
+
+.vote-paging #pager {
+}
+
+.vote-paging #pager ul {
+    font-size: 0px;
+}
+
+.vote-paging #pager ul li {
+    margin: 0 2px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    color: #738299;
+    font-size: 14px;
+    border: 1px solid #e2e2e2;
+}
+
+.vote-paging #pager ul li a {
+    color: #738299;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 15px;
+}
+
+.vote-paging #pager ul li a:hover {
+    color: #3aa1ff;
+}
+
+.vote-paging #pager ul .active {
+    background-color: #3aa1ff;
+    color: #fff;
+    padding: 0 15px;
+    border: 1px solid #3aa1ff;
+    line-height: 28px;
+}
+
+.vote-paging #pager ul .disabled {
+    padding: 0 15px;
+    line-height: 28px;
+}
+
+
+
+
+/*
+	#3aa1ff  深蓝
+	#40a9ff  浅蓝
+	#75caff  淡蓝色
+	#f2f6fa  背景色
+	#e9eee7  间隔线
+	#b4c1d5  弱化文字
+	#738299  一般文字
+	#424f65  重要文字
+	#ff6b7a  上涨
+	#9fd437  下跌
+	#ff8297  粉色
+	#fcb474  淡土黄色
+	#afd442  淡绿色
+	#c79bfa  淡紫色
+*/
+
+
+
+
+/*
+	
+	#3aa1ff  确定提交按钮
+	#ff6b7a  上传按钮
+
+*/
+
+
+
+
+
+/*添加选手字段*/
+
+
+
+
+
+
+
+
+
+

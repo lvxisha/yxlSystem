@@ -1,0 +1,39 @@
+body{
+	background-color: #fff;
+}
+.mainCon{
+	padding: 20px;
+}
+.selCon li{
+	display: inline-block;
+}
+.selCon input{
+	width: 100px;
+	display: inline-block;
+}
+.tab{
+	width: 100%;
+	margin-top: 20px;
+	border: 1px solid #ccc;
+}
+.tab tbody tr{
+	border-top: 1px solid #ccc;
+}
+.tab td{
+	text-align: center;
+}
+.tab tr{
+	line-height: 45px;
+}
+.tab tbody tr:nth-of-type(odd){
+	background-color: #f6f8fa;	
+}
+/*·ÖÒ³*/
+#setPage{
+	text-align: center;
+	margin-top: 20px;
+}
+
+#reachTab{
+	display: none;
+}

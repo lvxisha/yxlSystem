@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuan.mapper.OrderformMapper" >
+  <resultMap id="BaseResultMap" type="com.yuan.model.Orderform" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderid" property="orderid" jdbcType="VARCHAR" />
+    <result column="flight_id" property="flightId" jdbcType="INTEGER" />
+    <result column="airplane_id" property="airplaneId" jdbcType="INTEGER" />
+    <result column="seat_id" property="seatId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="iftp" property="iftp" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orderid, flight_id, airplane_id, seat_id, user_id, identity, tel, name, iftp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderform
+    where id = #{orderformId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderform
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuan.model.Orderform" >
+    insert into orderform (id, orderid, flight_id, 
+      airplane_id, seat_id, user_id, 
+      identity, tel, name, 
+      iftp)
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=VARCHAR}, #{flightId,jdbcType=INTEGER}, 
+      #{airplaneId,jdbcType=INTEGER}, #{seatId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{identity,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{iftp,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuan.model.Orderform" >
+    insert into orderform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="flightId != null" >
+        flight_id,
+      </if>
+      <if test="airplaneId != null" >
+        airplane_id,
+      </if>
+      <if test="seatId != null" >
+        seat_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="iftp != null" >
+        iftp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="flightId != null" >
+        #{flightId,jdbcType=INTEGER},
+      </if>
+      <if test="airplaneId != null" >
+        #{airplaneId,jdbcType=INTEGER},
+      </if>
+      <if test="seatId != null" >
+        #{seatId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iftp != null" >
+        #{iftp,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuan.model.Orderform" >
+    update orderform
+    <set >
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="flightId != null" >
+        flight_id = #{flightId,jdbcType=INTEGER},
+      </if>
+      <if test="airplaneId != null" >
+        airplane_id = #{airplaneId,jdbcType=INTEGER},
+      </if>
+      <if test="seatId != null" >
+        seat_id = #{seatId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iftp != null" >
+        iftp = #{iftp,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuan.model.Orderform" >
+    update orderform
+    set orderid = #{orderid,jdbcType=VARCHAR},
+      flight_id = #{flightId,jdbcType=INTEGER},
+      airplane_id = #{airplaneId,jdbcType=INTEGER},
+      seat_id = #{seatId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      identity = #{identity,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      iftp = #{iftp,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectOrderformInfoCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  SELECT
+	count( * ) 
+FROM
+	orderform 
+WHERE
+	user_id = #{userId,jdbcType=INTEGER}
+  </select>
+ <select id="selectOrderformInfo" resultType="com.yuan.model.entity.Order" parameterType="java.lang.Integer">
+    select 
+    <!-- <include refid="Base_Column_List" />
+    from orderform -->
+    a.id orderformId,
+	a.identity,
+	a.tel,
+	a.NAME,
+	a.user_id  userId,
+	b.startstation,
+	b.terminus,
+	b.deptime,
+	b.arrtime,
+	c.rank,
+	c.price,
+	c.seatnum,
+	d.aptype 
+FROM
+	orderform a
+	LEFT JOIN flight b ON a.flight_id = b.id
+	LEFT JOIN seat c ON a.seat_id = c.id
+	LEFT JOIN airplane d ON a.airplane_id = d.id
+    where user_id = #{userId,jdbcType=INTEGER}
+    LIMIT #{page.begin}, #{page.pageSize}
+  </select>
+  <select id="selectRecommendationTicket" resultType="com.yuan.model.entity.RecommendationTicket" parameterType="java.lang.Integer">
+SELECT
+	b.startstation,
+	b.terminus,
+	COUNT( * ) count 
+FROM
+	orderform a
+	LEFT JOIN flight b ON a.flight_id = b.id 
+WHERE
+	a.user_id = #{userId} 
+GROUP BY
+	b.startstation,
+	b.terminus 
+ORDER BY
+	count( * ) DESC 
+	LIMIT 1
+  </select>
+  
+</mapper>

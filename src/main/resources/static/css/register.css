@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*БъЬт*/
+.user-set-tit {
+    text-align: center;
+    font-size: 22px;
+    color: #999;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+
+.user-set-tit i {
+    margin: 0px 5px;
+}
+
+.user-set-tit .span2 {
+    color: ##999;
+}
+
+.reigt-main {
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+ .main-con >li {
+    line-height: 45px;
+    font-size: 16px;
+    margin-bottom: 20px;
+} 
+
+.main-con >li >label {
+    width: 15%;
+    text-align: right;
+    display: inline-block;
+}
+
+.main-con >li >input/* ,.main-con >li >select  */{
+    border: 1px solid #e7e7e7;
+    line-height: 30px;
+    padding: 10px;
+    width: calc(70% - 20%);
+}
+
+#sex{
+/* 	border: 1px solid #e7e7e7; */
+	display: inline-block;
+    line-height: 30px;
+    padding: 10px;
+    width: calc(70% - 20%);
+	text-align:left;
+}
+
+#sex >label{
+	margin-right:10px;
+}
+
+#lastBtn >button {
+    width: 100px!important;
+    height: 40px!important;
+    line-height: 40px!important;
+    cursor: pointer;
+    color: #fff;
+}
+
+.actived {
+    border-color: #3aa1ff!important;
+}
+/* .address{
+	line-height: 2px;
+} */

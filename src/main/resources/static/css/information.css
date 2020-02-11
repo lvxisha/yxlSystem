@@ -1,0 +1,19 @@
+.main-style{
+	/* margin-top:80px; */
+	display: flex;
+    justify-content: center;
+    font-size:18px;
+}
+.stylename{
+	width:120px;
+	height:50px;
+	text-align:center;
+	color:#000000;
+	font-weight: bold;
+}
+.stylevalue{
+	width:300px;
+	height:60px;
+	text-align:center;
+	text-color:#666666;
+}

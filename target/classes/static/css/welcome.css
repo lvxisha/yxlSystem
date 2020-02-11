@@ -1,0 +1,14 @@
+#head{
+	display: flex;
+    justify-content: center;
+}
+#guide{
+	display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+#roll{
+	border: 1px solid #000;
+
+}
+

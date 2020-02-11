@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>航班管理</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        .title{
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="title">订单列表（管理员可以查看与删除所有订单）</h1>
+        <table class="layui-hide" id="demo" lay-filter="test"></table>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/html" id="barDemo">
+    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['table','layer','laypage','form'],function(){
+
+        var laypage = layui.laypage //分页
+        ,layer = layui.layer //弹层
+        ,table = layui.table //表格
+        ,element = layui.element //元素操作
+        ,form = layui.form;
+
+        /*
+        * 航班管理---所有用户订单列表
+        */
+        
+
+    })
+
+</script>
+</html>

@@ -1,0 +1,201 @@
+.login-clears:after {
+    display: block;
+    content: '';
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.login-fl {
+    float: left;
+}
+
+.login-fr {
+    float: right;
+}
+
+.login-main {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 15%;
+    left: 0;
+    padding-top: 7%;
+    box-sizing: border-box;
+}
+
+.login-center {
+    position: relative;
+}
+
+.login-container {
+    position: absolute;
+    top: 20%;
+    z-index: 0;
+}
+
+.logo-part2 {
+    position: absolute;
+    top: -100px;
+    z-index: 100;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.login-body {
+    width: 410px;
+	/*min-height: 500px;*/
+    background-color: #fff;
+    text-align: left;
+    margin: 0 auto;
+}
+
+/*标题*/
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.login-con-header {
+    height: 100px;
+    background-color: #3C8DBD;
+    border-radius: 5px 5px 0 0;
+    padding: 20px 0 0 60px;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    position: relative;
+}
+
+.login-con-header >p {
+    width: 60px;
+    height: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px rgba(255, 255, 255, .8);
+}
+
+.login-con-header >div {
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    left: 60px;
+    bottom: 15px;
+    letter-spacing: 2px;
+}
+/*登录信息*/
+.login-pw {
+	/*border:1px solid #e7e7e7;*/
+    border-radius: 0 0 5px 5px;
+    border-top: none;
+    box-shadow: 0 0 12px rgba(0,0,0, .9);
+}
+
+.login-info {
+    width: 80%;
+    text-align: center;
+    padding: 50px 0 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+.login-info >div:not(.login-pwd) {
+    text-align: left;
+    margin-bottom: 25px;
+    border: 1px solid #e7e7e7;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+.login-info >div >input {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    width: calc(100% - 65px);
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+.login-info >div>label {
+    width: 50px;
+    display: inline-block;
+    border-right: 1px solid #e7e7e7;
+    font-size: 20px;
+}
+
+.login-info >div>label:hover .login-tb {
+    color: #3aa1ff;
+}
+
+/*自动登陆*/
+.login-check:hover {
+    border-color: #3aa1ff;
+}
+
+.login-check-active {
+    background-color: #3aa1ff;
+}
+
+.login-check {
+    display: inline;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ddd;
+    line-height: 14px;
+    margin-right: 5px;
+    color: #fff;
+    border-radius: 3px;
+}
+/*忘记密码*/
+.login-forget-pwd,.login-zhuce {
+    color: #3aa1ff;
+    cursor: pointer;
+}
+
+.login-pwd a:hover {
+    color: #3aa1ff;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+/*提交*/
+.login-submit {
+    width: 100%;
+    height: 40px;
+    background-color: #3C8DBD;
+    outline: none;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin: 50px auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-submit:hover {
+    opacity: .8;
+    filter: alpha(opacity=80);
+}
+/*版权声明*/
+.login-footer {
+    margin: 5% 0;
+    width: 100%;
+    text-align: center;
+}
