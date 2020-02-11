@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>航空订票系统</title>
+<link rel="stylesheet" href="../static/css/welcome.css">
+
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+</style>
+</head>
+<body>
+<div>
+<DIV id="head" class="sa">
+	<img src="../static/images/a1.png" width="950"   border=0>
+</DIV>
+<div id="guide">
+	<TABLE>
+		<TBODY>
+		  <TR>
+		    <TD align=middle>
+			<!--****************主菜单开始****************-->
+			<A href="welcome.html" target="">首	页</A> | 
+			<A href="user/planeTicket.html" target="">机票信息</A> |
+			<A href="user/ticketInquiry.html" target="">机票查询</A> |
+			<A href="login.html" target="">登	录</A> | 
+			<!--****************主菜单结束****************-->
+			</TD>
+		  </TR>
+		</TBODY>
+	</TABLE>
+</div>
+<div id="roll">
+	 <marquee  id='marCon' biehavior="scroll" direction="up" onmouseover=if(document.all!=null){this.stop()} onmouseout=if(document.all!=null){this.start()} scrollAmount=1 scrollDelay=1 height=180>
+        	szvdx
+        	<text id='inform'></text>
+    </marquee>
+</div>
+</div>
+</body>
+<script type="text/javascript" src="../public/jquery/jquery_v3.3.1.js"></script>
+<script type="text/javascript" src="../static/js/welcome.js"></script>
+</html>

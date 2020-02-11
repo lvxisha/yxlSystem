@@ -60,6 +60,7 @@ function postReq(){
 						}else if (roles == 1) {
 							console.log('普通用户')
 							location.href = 'user/firstPage.html';//进入用户首页
+							//location.href = 'userNew/index.html';//进入用户首页,新写的用户端网站页面
 						}
 						layui.sessionData('myData',{
 			                key :"user",

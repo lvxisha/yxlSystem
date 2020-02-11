@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>机票查询</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+	<!-- css files -->
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
+	<style>
+		.main-style{
+			/* margin-top:80px; */
+			display: flex;
+			justify-content: center;
+			font-size:18px;
+		}
+		.stylename{
+			width:120px;
+			height:50px;
+			text-align:center;
+			color:#000000;
+			font-weight: bold;
+		}
+		.stylevalue{
+			width:300px;
+			height:60px;
+			text-align:center;
+			text-color:#666666;
+		}
+	</style>
+	
+</head>
+<body>
+<!-- 导航部分开始 -->
+<header>
+	<div class="container">
+		<nav class="py-md-4 py-3 d-lg-flex">
+			<div id="logo">
+				<h1> <a href="index.html">机票在线选座系统</a></h1>
+			</div>
+			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+			<input type="checkbox" id="drop" />
+			<ul class="menu mt-lg-3 ml-auto">
+				<li class="active"><a href="index.html">首页</a></li>
+				<li class=""><a href="about.html">机票查询</a></li>
+				<li class=""><a href="services.html">订单</a></li>
+				<li class=""><a href="helpCenter.html">帮助中心</a></li>
+				<li class="mr-2"><a href="gallery.html">个人中心</a></li>
+				<li class=""><a href='ascript:void(0);'>修改密码</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<!-- 导航部分结束 -->
+
+<!-- banner -->
+<div class="inner-banner" id="home">
+	<div class="inner-banner-overlay">
+		<div class="container">
+			
+		</div>
+	</div>
+</div>
+<!-- //banner -->
+
+<div class="main-style">
+	<table border="1">
+	  <tr>
+		<th class="stylename" colspan="2">我的资料</th>
+	  </tr>
+	  <tr>
+	    <td class="stylename">姓名</td>
+	    <td class="stylevalue name">name</td>
+	  </tr>
+	  <tr>
+	    <td class="stylename">账号</td>
+	    <td class="stylevalue username">username</td>
+	  </tr>
+	  <tr>
+	    <td class="stylename">身份证号</td>
+	    <td class="stylevalue idcard">idcard</td>
+	  </tr>
+	  <tr>
+	    <td class="stylename">电话</td>
+	    <td class="stylevalue tel">tel</td>
+	  </tr>
+	  <tr>
+	    <td class="stylename">性别</td>
+	    <td class="stylevalue sex">sex</td>
+	  </tr>
+	  <tr>
+	    <td class="stylename">积分</td>
+	    <td class="stylevalue jf">jf</td>
+	  </tr>
+	    <tr>
+	    <td class="stylename">退票数</td>
+	    <td class="stylevalue tp">tp</td>
+	  </tr>
+	    <tr>
+	    <td class="stylename">登录次数</td>
+	    <td class="stylevalue logintimes">logintimes</td>
+	  </tr>
+	     <tr>
+	    <td class="stylename">详细地址</td>
+	    <td class="stylevalue address">address</td>
+	  </tr>
+	</table>
+ </div> 
+	
+</body>
+<script type="text/javascript" src="../../public/jquery/jquery_v3.3.1.js"></script>
+<script type="text/javascript" src="../../static/js/information.js"></script>
+</html>
