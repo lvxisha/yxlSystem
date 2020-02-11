@@ -13,12 +13,54 @@
 			width: 96%;
 			margin: 10px auto;
 		}
-		
+		.clear:after{
+			content:'';
+			display:block;
+			clear:both;
+		}
+		h1{
+		    background: url(http://www.umetrip.com/img/line_bg.gif) repeat;
+		    height: 21px;
+		    width: 100%;
+		}
+		span{
+		    color: #82bf50;
+		    font-size: 24px;
+		    font-weight: normal;
+		    background-color: #FFF;
+		    padding-right: 10px;
+		    padding-bottom: 10px;
+		    float: left;
+		    margin-top: -5px;
+		}
+		.question{
+			font-size: 14px;
+			color: #000;
+			margin-bottom: 14px;
+		}
+		.answer {
+			font-size: 14px;
+			color: #808080;
+			margin-bottom: 38px;
+		}
 	</style>
 </head>
 <body>
 	<div class="main-body">
-		<span class="" >帮助中心</span>
+		<div class="clear" style="margin-bottom:10px;">
+			<h1>
+				<span >帮助中心</span>
+			</h1>
+		</div>
+		<div>
+			<div class="question">Q:可以用航旅纵横网站查询哪些航班的动态信息？</div>
+			<div class="answer">A:目前，航旅纵横网站暂时支持大陆航班的航班动态查询，国际、港澳台航班正在紧张开发中。</div>
+			<div class="question">Q:航旅纵横网站可以查询哪些机票？</div>
+			<div class="answer">A:目前，航旅纵横网站暂时支持大陆航班的机票查询，国际、港澳台航班正在紧张开发中。</div>
+			<div class="question">Q:我为什么要用航旅纵横网站查航班动态和机票信息？</div>
+			<div class="answer">A:航旅纵横手机客户端已经提供航班动态和机票搜索功能，但由于手机屏幕尺寸限制，手机客户端以满足用户基本需求为主，航旅纵横更为丰富、更为专业，更为贴心的服务内容，需要通过航旅纵横网站呈现给您。航旅纵横网站权威、丰富、贴心的信息服务，会给您带来独一无二的出行体验。</div>   
+		</div>
+		
 	</div>
 </body>
 <script src="../../public/jquery/jquery_v3.3.1.js"></script>
@@ -29,7 +71,7 @@
 		layui.use(['form','laytpl'],function(){
 			var form = layui.form,
 				laytpl = layui.laytpl;
-			
+				
 
 		})
 	})
