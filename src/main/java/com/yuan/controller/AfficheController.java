@@ -2,6 +2,7 @@ package com.yuan.controller;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +28,18 @@ public class AfficheController {
     private FlightService flightService;
 
 	@RequestMapping("/selectFlightInformation")
-    public Result selectFlightInformation(Page page) {
+    public Result selectFlightInformation(Integer page,Integer limit) {
+	    Page pa = new Page();
+	    pa.setPageNum(page);
+	    pa.setPageSize(limit);
         Result result = new Result();
-        List<GetFlightInformation> data = flightService.selectFlightInformation(page);
-        result.setData(data);
+        List<GetFlightInformation> data = flightService.selectFlightInformation(pa);
+        Integer count = flightService.selectFlightCount();
+        JSONObject obj = new JSONObject();
+        obj.put("count",count);
+        obj.put("page",page);
+        obj.put("data",data);
+        result.setData(obj);
         return result; 
     }
 	
